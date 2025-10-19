@@ -83,11 +83,15 @@ async def process_analysis(message: Message, input_text: str, input_type: str):
 
 @dp.callback_query(F.data == "share")
 async def share(cb: CallbackQuery):
-    tg_id = str(cb.from_user.id)
-    hook = bot.__dict__.get("hooks", {}).get(tg_id, "Это зацепило меня. Проверь, что он скажет про тебя.")
-    card = make_share_card(hook, watermark=settings.SHARE_WATERMARK)
-    await cb.message.answer_photo(BufferedInputFile(card, filename="share.png"),
-        caption=f"Проверь себя: @{(await bot.get_me()).username}")
+    tg = (await bot.get_me()).username
+    hook = bot.__dict__.get("hooks", {}).get(str(cb.from_user.id),
+        "Он сказал обо мне то, чего не знал никто.")
+    msg = (
+        f"«{hook}»\n\n"
+        f"Проверь себя — @{tg}\n"
+        f"https://t.me/{tg}"
+    )
+    await cb.message.answer(msg)
     await cb.answer()
 
 @dp.callback_query(F.data == "letter")
