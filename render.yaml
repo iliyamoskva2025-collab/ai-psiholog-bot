@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: ai-psiholog
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    autoDeploy: true
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: MODEL_NAME
+        value: gpt-5
+      - key: STT_MODEL
+        value: whisper-1
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: STRIPE_PRICE_WEEKLY
+        sync: false
+      - key: BASE_URL
+        sync: false
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:///./data.db
+      - key: FREE_TRIAL_ANALYSES
+        value: 1
+      - key: PREMIUM_WEEKLY_PRICE_EUR
+        value: 4.99
+      - key: BRAND_NAME
+        value: AI‑Психолог
+      - key: SHARE_WATERMARK
+        value: @AIpsihologProBot
