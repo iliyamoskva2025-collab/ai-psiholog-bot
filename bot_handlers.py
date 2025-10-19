@@ -6,7 +6,6 @@ from db import SessionLocal, get_or_create_user, has_premium, increment_free, lo
 from analysis import analyze_text
 from letters import make_letter
 from speech import stt_audio_url_to_text
-from share_image import make_share_card
 import httpx
 
 bot = Bot(token=settings.TELEGRAM_BOT_TOKEN)
