@@ -9,3 +9,10 @@ openai==1.52.0
 stripe==10.9.0
 httpx==0.27.2
 itsdangerous==2.2.0
+
+# aiohttp stack pinned to stable wheels
+aiohttp==3.9.5
+multidict==6.0.5
+yarl==1.9.4
+frozenlist==1.4.1
+aiosignal==1.3.1
